@@ -1,0 +1,14 @@
+Essential ROS commands:
+rosmsg - display info about a message type
+rosbag - store and playback all data being published over a topic
+rosrun [package] [node] - run a node
+rostopic - list all topics currently running
+roslaunch
+roscore
+
+
+Things to look into:
+rosserial
+ros + python
+
+A Gentle introduction to ROS
