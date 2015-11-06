@@ -1,0 +1,26 @@
+* Functionality
+*** Basic/Primary
+***** Data entry
+Enter in an expenditure or earning for a given day, along with a brief note for that entry.
+Support with tags such as 'CC', 'CA' for channel of expenditure, and tags like 'food', 'travel', 'personal' for type/purpose of expenditure.
+
+_Implementation_
+Store data in text files with each line in the file corresponding to an entry. Have a tokenized format for the information, so that I can read in each line, split on a given char/string, and then have a standard array of elements.
+Perhaps support multiple tags by seperating them by commas within a single 'tags' element in the aforementioned array.
+Have a file for each month, also named according to a standard.
+
+***** Data Retrieval
+Can get an overview of all recent spending, earning, or both (combined into a net loss/gain report).
+Perhaps display a shortened version of each data point and then allow user to select a data point for more information.
+
+Can get a report of all data points for a given time period.
+
+_Implementation_
+Read everything for relevant report period into mem - array of arrays of strings for each data point.
+Perhaps look into Vectors to 
+* Working on:
+>>> Use size_t
+*** TODO Finish implementation of Date
+*** TODO Test Date
+*** TODO Finish implementation of finManager
+*** TODO Test finManager
