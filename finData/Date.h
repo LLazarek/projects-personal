@@ -17,7 +17,9 @@ class Date{
   Date(Date &rhs) = default; // Shallow copy OK
   Date& operator=(Date &rhs);
   bool operator<(Date &rhs);
+  bool operator>(Date &rhs);
   bool operator<=(Date &rhs);
+  bool operator>=(Date &rhs);
   bool operator==(Date &rhs);
   int getMonth() { return month; }
   int getDay() { return day; }

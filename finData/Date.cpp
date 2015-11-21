@@ -1,5 +1,6 @@
-#include "Date.h"
 #include <cstdlib>
+#include <string>
+#include "Date.h"
 
 Date::Date(string in){
   // Extract data from string, format mm/dd/yyyy
@@ -40,15 +41,15 @@ Date& Date::operator=(Date &rhs){
    bool                    The result of the comparison.
                            (See parameter orEqual)
 */
-bool lessThan(Date &rhs, bool orEqual){
-    int yearDiff = year - rhs.getYear();
-  if(yearDiff < 0)               // this.year < rhs.year
+bool Date::lessThan(Date &rhs, bool orEqual){
+  int yearDiff = year - rhs.getYear();
+  if(yearDiff < 0){              // this.year < rhs.year
     return true;
-  else if(yearDiff == 0){        // Same year
+  }else if(yearDiff == 0){       // Same year
     int monthDiff = month - rhs.getMonth();
-    if(monthDiff < 0)            // this.month < rhs.month
+    if(monthDiff < 0){           // this.month < rhs.month
       return true;
-    else if(monthDiff == 0){     // Same month
+    }else if(monthDiff == 0){    // Same month
       int dayDiff = day - rhs.getDay();
       if(dayDiff < 0)            // this.day < rhs.day
 	return true;
@@ -60,12 +61,20 @@ bool lessThan(Date &rhs, bool orEqual){
   return false;
 }
 
-bool operator<(Date &rhs){
+bool Date::operator<(Date &rhs){
   return lessThan(rhs, false);
 }
 
-bool operator<=(Day &rhs){
+bool Date::operator>(Date &rhs){
+  return !lessThan(rhs, true);
+}
+
+bool Date::operator<=(Day &rhs){
   return lessThan(rhs, true);
+}
+
+bool Date::operator>=(Day &rhs){
+  return !lessThan(rhs, true);
 }
 
 bool operator==(Day &rhs){
