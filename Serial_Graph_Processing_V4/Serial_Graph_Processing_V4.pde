@@ -1,8 +1,4 @@
 import processing.serial.*;
-import controlP5.*;
-
-//ControlP5 cp5;
-public float numberboxValue = 0;
 
 String inString;
 
@@ -28,18 +24,7 @@ void setup () {
   myPort.bufferUntil('\n');
   resetScrn();
   
-  //Text box stuff
-  PFont font = createFont("arial",10);
-  //cp5 = new ControlP5(this);
-/*  cp5.addTextfield("input")
-     .setPosition(10,10)
-     .setSize(200,25)
-     .setFont(font)
-     .setFocus(true)
-     .setColor(color(254,254,254))
-     ;
-     
-  textFont(font);*/
+
 }
 
 public void input(String theText) {
@@ -54,19 +39,7 @@ void interpret(String str){
 
 void draw () {
   if (inString != null) {
-    if(inString.contains("\t")){
-      String[] strs = split(inString, '\t');
-      
-      // Process first #
-      
-      updateLn1(strs[0]);
-      
-      updateLn2(strs[1]);
-    }else{
-      println(inString);
-      if(inString.contains("Stabilize")) resetGraph();
-      else if(inString.contains("K vals: ")) updateK(inString);
-    }
+    updateLn1(inString);
   }
 }
 
@@ -154,7 +127,7 @@ void resetGraph(){
 void updateLn1(String val){
   val = trim(val);                // trim off whitespaces.
   float inByte = float(val);           // convert to a number.
-  inByte = map(inByte, -5, 5, 0, height); //map to the screen height.
+  inByte = map(inByte, 0, 1000, 0, height); //map to the screen height.
 
   //Drawing a line from Last inByte to the new one.
   stroke(0,0,255);     //stroke color
