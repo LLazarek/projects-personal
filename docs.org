@@ -1,0 +1,24 @@
+
+
+* The Setup
+We have a wooden platform with two blocks vertically mounted about 1 foot apart.
+See pictures of setup:
+[[file:./Platform_full][Platform]]
+[[file:./Load_cell.png][Load cell]]
+
+* Wiring
+The load cells need to have their output signal amplified, so we use two INA125P amplifiers to bring their signals up to a level that Arduino can work with.
+See wiring:
+[[file:./Wiring_diagram][Wiring diagram]]
+[[file:./Wiring_single][Picture of wiring set up]]
+[[file:./Wiring_real][Full picture of wiring]]
+
+
+* Arduino code set up
+Print the mean of the two readings out to Serial, one reading per line.
+
+
+* Calibration
+Next, we needed to determine the relationship between the output of the load cells.
+We could have done some math to find these relationships, but
+To do this, we gathered a few household items of various weights and an electronic scale. We weighed each item and recorded its weight on a piece of paper.

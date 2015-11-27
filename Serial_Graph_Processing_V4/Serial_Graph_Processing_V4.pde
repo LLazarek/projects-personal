@@ -1,4 +1,5 @@
 import processing.serial.*;
+import java.io.*; // Needing for file I/O
 
 String inString;
 
@@ -14,17 +15,21 @@ int lastheight2 = 0;
 
 float kp = 0, ki = 0, kd = 0;
 
+PrintWriter out;
+
 void setup () {
   // set the window size:
   size(1300, 600);
 
-  myPort = new Serial(this, "/dev/ttyACM0", 115200);  //
+  myPort = new Serial(this, "/dev/ttyACM0", 115200);
 
   // A serialEvent() is generated when a newline character is received :
   myPort.bufferUntil('\n');
   resetScrn();
   
-
+  // Setup output stream to write logs to file-----------------------------------
+  out = createWriter("out.dat");
+  frameRate(50);
 }
 
 public void input(String theText) {
@@ -39,8 +44,15 @@ void interpret(String str){
 
 void draw () {
   if (inString != null) {
+    out.print(inString);
     updateLn1(inString);
   }
+}
+
+void keyPressed(){
+  out.flush();
+  out.close();
+  exit();
 }
 
 void serialEvent (Serial myPort) {
@@ -77,43 +89,16 @@ void resetScrn(){
   //Clear screen
   background(254, 254, 254);
   
-  //Draw x-axis
-  stroke(1, 1, 1);
-  line(0, height/2, width, height/2);
-  
-  float h = height/10;
-  float w = width - 20;
+  float h = height/25; // Determine the number of pixels per Newton
   //Create scale markings:
-  fill(0, 0, 255);
+  fill(0, 0, 0); // Text color: black
   textSize(10);
-  text("1", 0, 4*h);
-  text("2", 0, 3*h);
-  text("3", 0, 2*h);
-  text("4", 0, h);
-  text("-1", 0, 6*h);
-  text("-2", 0, 7*h);
-  text("-3", 0, 8*h);
-  text("-4", 0, 9*h);
-  fill(255, 0, 0);
-  text("51", w - 10, 4*h);
-  text("102", w - 10, 3*h);
-  text("153", w - 10, 2*h);
-  text("204", w - 10, h);
-  text("-51", w - 10, 6*h);
-  text("-102", w - 10, 7*h);
-  text("-153", w - 10, 8*h);
-  text("-204", w - 10, 9*h);
-  
-  
-  stroke(200, 200, 200);
-  line(0, 4*h, width, 4*h);
-  line(0, 3*h, width, 3*h);
-  line(0, 2*h, width, 2*h);
-  line(0, h, width, h);
-  line(0, 6*h, width, 6*h);
-  line(0, 7*h, width, 7*h);
-  line(0, 8*h, width, 8*h);
-  line(0, 9*h, width, 9*h);
+  stroke(0, 0, 0); // Scale line color: black
+  strokeWeight(1); // Line weight: 1
+  for(int i = 1; i <= 25; ++i){
+     text(str(25 - i), 5, i*h);
+     line(0, i*h, width, i*h);
+  }
 }
 
 void resetGraph(){
@@ -127,7 +112,7 @@ void resetGraph(){
 void updateLn1(String val){
   val = trim(val);                // trim off whitespaces.
   float inByte = float(val);           // convert to a number.
-  inByte = map(inByte, 0, 1000, 0, height); //map to the screen height.
+  inByte = map(inByte, 0, 25, 0, height); //map to the screen height.
 
   //Drawing a line from Last inByte to the new one.
   stroke(0,0,255);     //stroke color
@@ -144,19 +129,4 @@ void updateLn1(String val){
     // increment the horizontal position:
     xPos++;
   }
-}
-
-void updateLn2(String val){
-  val = trim(val);                // trim off whitespaces.
-  float inByte = float(val);           // convert to a number.
-  inByte = map(inByte, -255, 255, 0, height); //map to the screen height.
-
-  //Drawing a line from Last inByte to the new one.
-  stroke(255,0,0);     //stroke color
-  strokeWeight(2);        //stroke wider
-  line(lastxPos2, lastheight2, xPos2, height - inByte); 
-  lastxPos2 = xPos2;
-  lastheight2 = int(height-inByte);
-
-  xPos2++;
 }
