@@ -1,5 +1,5 @@
-#define coeff -0.103792
-#define intercept 26.21291046
+#define coeff -0.0763401763
+#define intercept 32.6997641672
 
 void setup() {
   Serial.begin(115200);

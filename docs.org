@@ -20,5 +20,7 @@ Print the mean of the two readings out to Serial, one reading per line.
 
 * Calibration
 Next, we needed to determine the relationship between the output of the load cells.
-We could have done some math to find these relationships, but
-To do this, we gathered a few household items of various weights and an electronic scale. We weighed each item and recorded its weight on a piece of paper.
+We could have done some math to find these relationships, but the easier route is to just emperically determine the relationship.
+To do this, we gathered a few household items of various weights and an electronic scale. We weighed each item and recorded its weight on a piece of paper. Then we measured the output of the force sensor for each of those items, and then plotted the measured wieghts vs the loda cell readings. Using Excel or some equivalent, you can create a lienar fit and thereby obtain a function for the weight (or force) in terms of the load cell output.
+
+
