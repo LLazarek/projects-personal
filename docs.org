@@ -1,4 +1,4 @@
-
+Building a cheap, customizable, extensible force meter/scale
 
 * The Setup
 We have a wooden platform with two blocks vertically mounted about 1 foot apart.
@@ -13,14 +13,13 @@ See wiring:
 [[file:./Wiring_single][Picture of wiring set up]]
 [[file:./Wiring_real][Full picture of wiring]]
 
-
 * Arduino code set up
-Print the mean of the two readings out to Serial, one reading per line.
-
+Print the mean of the two readings out to Serial, one reading per line. Delay for as long (or not) as necessary - we used 10ms.
 
 * Calibration
 Next, we needed to determine the relationship between the output of the load cells.
-We could have done some math to find these relationships, but the easier route is to just emperically determine the relationship.
-To do this, we gathered a few household items of various weights and an electronic scale. We weighed each item and recorded its weight on a piece of paper. Then we measured the output of the force sensor for each of those items, and then plotted the measured wieghts vs the loda cell readings. Using Excel or some equivalent, you can create a lienar fit and thereby obtain a function for the weight (or force) in terms of the load cell output.
+We could have done some math to find these relationships, but the simpler and generally more practical route is to just empirically determine the relationship.
+To do this, we gathered a few household items of various weights and an electronic scale. We weighed each item and recorded its weight on a piece of paper. Then we measured the output of the force sensor for each of those items, and then plotted the measured weights vs the load cell readings. Using Excel or some equivalent, you can create a linear fit and thereby obtain a function for the weight (or force) in terms of the load cell output.
 
-
+* Results
+The meter is now complete. The thing to be aware of, however, is that the calibration needs to be redone if the conditions in which the calibration are done are different from those in which the measurement will be done. For example, we calibrated the meter inside, at room temperature (~20 degrees C). However, we needed to use it outside, and we found that when we took it outside the readings of the load cells began drifting considerably from the calibration point we had determined before. This was because it was cold outside (~5 degrees C) and the temperature was changing the tensile properties of the metal that the load cells are made of. Thus, we needed to recalibrate before we could use the meter.
