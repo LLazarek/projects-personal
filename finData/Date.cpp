@@ -2,9 +2,9 @@
 #include <string>
 #include "Date.h"
 
-Date::Date(string in){
+Date::Date(std::string in){
   // Extract data from string, format mm/dd/yyyy
-  char *c = in.c_str();
+  const char *c = in.c_str();
   char m[2] = {*c, *(c + 1)};
   char d[2] = {*(c + 3), *(c + 4)};
   char y[4] = {*(c + 6), *(c + 7), *(c + 8), *(c + 9)};
@@ -25,6 +25,7 @@ Date& Date::operator=(Date &rhs){
   day = rhs.getDay();
   month = rhs.getMonth();
   year = rhs.getYear();
+  return *this;
 }
 
 /* lessThan:
@@ -69,21 +70,29 @@ bool Date::operator>(Date &rhs){
   return !lessThan(rhs, true);
 }
 
-bool Date::operator<=(Day &rhs){
+bool Date::operator<=(Date &rhs){
   return lessThan(rhs, true);
 }
 
-bool Date::operator>=(Day &rhs){
+bool Date::operator>=(Date &rhs){
   return !lessThan(rhs, true);
 }
 
-bool operator==(Day &rhs){
+bool Date::operator==(Date &rhs){
   return ((year == rhs.getYear()) &&
 	  (month == rhs.getMonth()) &&
 	  (day == rhs.getDay()));
 }
 
-string toStr(){ // Using c++11 (c++0x)
+bool Date:operator!=(Date &rhs){
+  return !operator==(rhs);
+}
+
+std::string std::toStr(){ // Using c++11 (c++0x)
   return (std::to_string(month) + "/" + std::to_string(day) +
           "/" + std::to_string(year));
+}
+
+std::ostream& std::operator<<(std::ostream &out, const Date &rhs){
+  out << rhs.month << "/" << rhs.day << "/" << rhs.year;
 }

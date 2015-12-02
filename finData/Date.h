@@ -2,17 +2,15 @@
    Class for working with and comparing dates.
 */
 #ifndef DATE_H
-#DEF DATE_H
+#define DATE_H
+
 #include <string>
+#include <iostream>
 
 class Date{
- private:
-  int month;
-  int day;
-  int year;
-
+  friend std::ostream& operator<<(std::ostream &out, const Date &rhs);
  public:
-  Date(string in);
+  Date(std::string in);
   Date(int mo, int d, int y);
   Date(Date &rhs) = default; // Shallow copy OK
   Date& operator=(Date &rhs);
@@ -24,7 +22,13 @@ class Date{
   int getMonth() { return month; }
   int getDay() { return day; }
   int getYear() { return year; }
-  string toStr();
-}
+  std::string toStr();
+
+private:
+  int month;
+  int day;
+  int year;
+  bool lessThan(Date &rhs, bool orEqual);
+};
 
 #endif
