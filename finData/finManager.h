@@ -11,4 +11,6 @@ class finManager{
  public:
   finManager();
   finManager(finManager &rhs);
+  
+  
   bool read(Date dateStart, Date dateEnd);

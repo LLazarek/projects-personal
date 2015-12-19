@@ -19,8 +19,7 @@ _Implementation_
 Read everything for relevant report period into mem - array of arrays of strings for each data point.
 Perhaps look into Vectors to 
 * Working on:
->>> Use size_t
-*** TODO Finish implementation of Date
-*** TODO Test Date
+*** DONE Finish implementation of Date
+*** DONE Test Date
 *** TODO Finish implementation of finManager
 *** TODO Test finManager
