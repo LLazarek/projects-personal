@@ -6,6 +6,9 @@
 
 int Date::daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
+/* Date::Constructor: creates a Date object from a string containing a date in
+   the format "mm/dd/yyyy"
+*/
 Date::Date(std::string in){
   // Extract data from string, format mm/dd/yyyy
   const char *c = in.c_str();
@@ -17,6 +20,10 @@ Date::Date(std::string in){
   year = atoi(y);
 }
 
+
+/* Date::Constructor: creates a Date object from integer values for month, day,
+   and year (in that order)
+*/
 Date::Date(int mo, int d, int y) : month(mo), day(d), year(y) {
   // Ensure valid inputs
   if(month < 1 || mo > 12) month = 1;
@@ -25,6 +32,7 @@ Date::Date(int mo, int d, int y) : month(mo), day(d), year(y) {
   if(day == 29 && month == 2 && !isLeapYear(year))
     throw "Invalid date";
 }
+
 
 Date& Date::operator=(const Date &rhs){
   // Shallow copy
@@ -35,8 +43,8 @@ Date& Date::operator=(const Date &rhs){
 }
 
 /* lessThan:
-   Private utility function. Determines if another Date object
-   is less than this one.
+   Private utility function. Determines if another Date object represents a date
+   before this one.
 
    @params
    Date& rhs               A reference to the other Date object
@@ -94,6 +102,16 @@ bool Date::operator!=(const Date &rhs) const{
   return !operator==(rhs);
 }
 
+/* Date::toStr():
+   Creates a string representation of this Date object in the format
+   "mm/dd/yyyy"
+
+   @params
+   void
+
+   @return
+   std::string 
+*/
 std::string Date::toStr() const{ // Using c++11 (c++0x)
   return (std::to_string(month) + "/" + std::to_string(day) +
           "/" + std::to_string(year));
@@ -103,6 +121,18 @@ std::ostream& operator<<(std::ostream &out, const Date &rhs){
   return out << rhs.month << "/" << rhs.day << "/" << rhs.year;
 }
 
+/* Date::daysBetween():
+   Datermines the number of days between the two given Dates. The order of
+   the arguments does not matter.
+   Note that this function accounts for leap years.
+
+   @params
+   const Date &start
+   const Date &end
+
+   @return
+   int 
+*/
 int Date::daysBetween(const Date &start, const Date &end){
   int days = 0;
   Date st = start;

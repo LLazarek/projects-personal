@@ -9,7 +9,11 @@
 
 class Date{
   friend std::ostream& operator<<(std::ostream &out, const Date &rhs);
+  
  public:
+  // Default Constructor: creates a Date with date "1/1/2000"
+  Date() : month(1), day(1), year(2000) {}
+  
   Date(std::string in);
   Date(int mo, int d, int y);
   Date(const Date &rhs) = default; // Shallow copy OK
@@ -25,7 +29,6 @@ class Date{
   int   getYear() const    { return year; }
   bool  isLeapYear() const { return !( (year - 1804)%4 ); }
   std::string toStr() const;
-  // Determines the number of days between the two given dates, accounting for leap years etc
   static int daysBetween(const Date &start, const Date &end);
   static bool isLeapYear(int yr) { return !( (yr - 1804)%4 ); }
   
@@ -33,7 +36,7 @@ private:
   int month;
   int day;
   int year;
-  static int daysInMonth[12];
+  static int daysInMonth[12]; // Contains the number of days in each month
   bool lessThan(const Date &rhs, bool orEqual) const;
 };
 

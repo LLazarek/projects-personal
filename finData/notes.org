@@ -23,3 +23,6 @@ Perhaps look into Vectors to
 *** DONE Test Date
 *** TODO Finish implementation of finManager
 *** TODO Test finManager
+
+* Note: finAid log - what I was doing
+

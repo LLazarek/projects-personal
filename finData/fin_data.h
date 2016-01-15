@@ -2,40 +2,37 @@
    Data wrapper for information related to a single expense/earning entry.
 */
 #ifndef FIN_DATA_H
-#def FIN_DATA_H
+#define FIN_DATA_H
+
+#include <string>
+#include <unordered_set>
+#include "Date.h"
 
 class fin_data {
-private:
-  Date date;
-  double amount;
-  string medium;
-  string tagList;
-
 public:
-  /* fin_data():
+  fin_data(const Date &idate, const double &iamount, const std::string &imedium,
+	   const std::string &itagList, const std::string &inote);
 
-
-     @params
-     const Date &idate
-     const double &iamount
-     const string &imedium
-     const string &itagList
-
-     @return
-     const 
-  */
- fin_data(const Date &idate, const double &iamount, const string &imedium,
-	  const string &itagList)
-   : date(idate), amount(iamount), medium(imedium), tagList(itagList) {}
+  bool addTag(std::string tag){ return tagList.insert(tag).second; }
   
-
-  bool setData(string idate = date, double iamount = amount, string imedium = medium, string itagList = tagList);
+  void                             setDate    (Date d)           { date = d;   }
+  void                             setMedium  (std::string m)    { medium = m; }
+  void                             setAmount  (double a)         { amount = a; }
+  void                             setNote    (std::string n)    { note = n;   }
+  void                             setTagList (std::string tags);
   
+  Date                             getDate    ()            { return date;    }
+  double                           getAmount  ()            { return amount;  }
+  std::string                      getMedium  ()            { return medium;  }
+  std::unordered_set<std::string>  getTagList ()            { return tagList; }
+  std::string                      getNote    ()            { return note;    }
   
-  string getDate(){ return date; }
-  double getAmount(){ return amount; }
-  string getMedium(){ return medium; }
-  string getTagList(){ return tagList; }
-}
+private:
+  Date                             date;
+  double                           amount; // + = earning, - = expense
+  std::string                      medium;
+  std::string                      note;
+  std::unordered_set<std::string>  tagList;
+};
 
 #endif
