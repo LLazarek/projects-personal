@@ -12,7 +12,7 @@ fin_data::fin_data(const Date        &idate,   const double &iamount,
   setTagList(itagList);
 }
 
-std::string getNextData(std::stringstream *stream){
+std::string fin_data::getNextData(std::stringstream *stream){
   std::string str;
   if(!std::getline(*stream, str, DATA_DELIM)){
     // TMP TODO: throw exception
@@ -20,14 +20,14 @@ std::string getNextData(std::stringstream *stream){
   return str;
 }
 
-fin_data::fin_data(string data_entry){
+fin_data::fin_data(std::string data_entry){
   std::stringstream stream(data_entry);
   std::string str;
   date = Date(getNextData(&stream));
   amount = std::stod(getNextData(&stream));
   medium = getNextData(&stream);
   note = getNextData(&stream);
-  setTagList(getNextData(&stream);
+  setTagList(getNextData(&stream));
 }
 
 void fin_data::setTagList(std::string tags){

@@ -11,8 +11,8 @@
 class fin_data {
 public:
   fin_data(const Date &idate, const double &iamount, const std::string &imedium,
-	   const std::string &itagList, const std::string &itagList);
-  fin_data(string data_entry);
+	   const std::string &inote, const std::string &itagList);
+  fin_data(std::string data_entry);
 
   bool addTag(std::string tag){ return tagList.insert(tag).second; }
   
