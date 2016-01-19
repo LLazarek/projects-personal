@@ -12,7 +12,7 @@ public:
   finManager();
 
   // Read information from dateStart to dateEnd from data files
-  bool read(std::string path, Date start, Date end);
+  bool read(Date start, Date end);
   void genReport();
   bool saveEntry(const fin_data &entry);
   
