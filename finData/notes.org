@@ -18,11 +18,18 @@ Can get a report of all data points for a given time period.
 _Implementation_
 Read everything for relevant report period into mem - array of arrays of strings for each data point.
 Perhaps look into Vectors to 
+*** Data format
+Data is organized into files by month, named by their month in the following format:
+"mm.yyyy.dat"; so jan 2016 would be: "01.2016.dat"
+Within these files, data is organized in ascending chronological order, with each entry taking a single line
 * Working on:
 *** DONE Finish implementation of Date
 *** DONE Test Date
+*** DONE Finish and test fin_data
 *** TODO Finish implementation of finManager
 *** TODO Test finManager
 
+
+*** TODO One day.... Make code work with exceptions
 * Note: finAid log - what I was doing
 

@@ -27,7 +27,12 @@ Date::Date(std::string in){
 Date::Date(int mo, int d, int y) : month(mo), day(d), year(y) {
   // Ensure valid inputs
   if(month < 1 || mo > 12) month = 1;
-  if(day < 1 || day > 31) day = 1;
+  
+  if(day < 1) day = 1;
+  else if(day > daysInMonth[month - 1]){
+    day = daysInMonth[month - 1]; // Coerce day to highest possible value in mo
+  }
+  
   if(year < 1) year = 1;
   if(day == 29 && month == 2 && !isLeapYear(year))
     throw "Invalid date";

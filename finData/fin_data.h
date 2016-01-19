@@ -21,6 +21,8 @@ public:
   void                             setAmount  (double a)         { amount = a; }
   void                             setNote    (std::string n)    { note = n;   }
   void                             setTagList (std::string tags);
+
+  void                             addTags    (std::string tags);
   
   Date                             getDate    ()            { return date;    }
   double                           getAmount  ()            { return amount;  }

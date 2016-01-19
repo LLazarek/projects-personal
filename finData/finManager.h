@@ -1,16 +1,21 @@
+#ifndef FINMANAGER_H
+#define FINMANAGER_H
+
+#include "fin_data.h"
+#include "Date.h"
+
 class finManager{
- private:
-  fin_data* entryList;
-  double avgIn_daily;
-  double avgOut_daily;
-  double avgIn_weekly;
-  double avgOut_weekly;
-  double avgIn_monthly;
-  double avgOut_monthly;
-
- public:
+private:
+  std::vector<fin_data> entryList;
+  
+public:
   finManager();
-  finManager(finManager &rhs);
 
-  // Read information from dateStart to dateEnd from data file
-  bool read(Date dateStart, Date dateEnd);
+  // Read information from dateStart to dateEnd from data files
+  bool read(std::string path, Date start, Date end);
+  void genReport();
+  bool saveEntry(const fin_data &entry);
+  
+};
+
+#endif

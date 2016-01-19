@@ -31,6 +31,9 @@ class Date{
   std::string toStr() const;
   static int daysBetween(const Date &start, const Date &end);
   static bool isLeapYear(int yr) { return !( (yr - 1804)%4 ); }
+  void  incrDay(const int days);
+  void  incrMonth(const int mos);
+  void  incrYear(const int yrs);
   
 private:
   int month;
