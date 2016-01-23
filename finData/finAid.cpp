@@ -1,0 +1,31 @@
+#include "finManager.h"
+
+int main(){
+  finManager fm;
+  std::string str("");
+  do{
+    std::cout << "Enter a new data entry:" << std::endl;
+    std::cout << "Date:\t\t\t";
+    getline(std::cin, str);
+    Date d(str);
+    
+    std::cout << "Amount: (- = earning)\t";
+    getline(std::cin, str);
+    double amt = atof(str.c_str());
+    
+    std::cout << "Medium:\t\t\t";
+    getline(std::cin, str);
+    std::string med = str;
+    
+    std::cout << "Note:\t\t\t";
+    getline(std::cin, str);
+    std::string note = str;
+    
+    std::cout << "Tags:\t\t\t";// Tags seperated by '`'
+    getline(std::cin, str);
+    fm.saveEntry(fin_data(d, amt, med, note, str));
+
+    std::cout << "Save another? ([y]/n)" << std::endl;
+    getline(std::cin, str);
+  }while(str.size() == 0 || str.c_str()[0] == 'y'); // matches "y" & "yes"
+}

@@ -48,3 +48,16 @@ void fin_data::addTags(std::string tags){
     tagList.insert(str);
   }
 }
+
+std::string fin_data::toString() const {
+  std::string str = "";
+  str += date.toStr() + "|" + std::to_string(amount) + "|" + medium + "|"
+         + note + "|";
+  auto it = tagList.begin();
+  if(it == tagList.end()) return str;
+  str += *it;
+  for(++it; it != tagList.end(); ++it){
+    str += "`" + *it;
+  }
+  return str;
+}

@@ -1,6 +1,7 @@
 #ifndef FINMANAGER_H
 #define FINMANAGER_H
 
+#include <vector>
 #include "fin_data.h"
 #include "Date.h"
 

@@ -24,15 +24,17 @@ public:
 
   void                             addTags    (std::string tags);
   
-  Date                             getDate    ()            { return date;    }
-  double                           getAmount  ()            { return amount;  }
-  std::string                      getMedium  ()            { return medium;  }
-  std::unordered_set<std::string>  getTagList ()            { return tagList; }
-  std::string                      getNote    ()            { return note;    }
+  Date                             getDate    () const      { return date;    }
+  double                           getAmount  () const      { return amount;  }
+  std::string                      getMedium  () const      { return medium;  }
+  std::unordered_set<std::string>  getTagList () const      { return tagList; }
+  std::string                      getNote    () const      { return note;    }
+
+  std::string                      toString   () const;
   
 private:
   Date                             date;
-  double                           amount; // + = earning, - = expense
+  double                           amount; // - = earning, + = expense
   std::string                      medium;
   std::string                      note;
   std::unordered_set<std::string>  tagList;

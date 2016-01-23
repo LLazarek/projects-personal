@@ -11,13 +11,18 @@ int Date::daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 */
 Date::Date(std::string in){
   // Extract data from string, format mm/dd/yyyy
-  const char *c = in.c_str();
-  char m[2] = {*c, *(c + 1)};
-  char d[2] = {*(c + 3), *(c + 4)};
-  char y[4] = {*(c + 6), *(c + 7), *(c + 8), *(c + 9)};
-  month = atoi(m);
-  day = atoi(d);
-  year = atoi(y);
+  std::string m = in.substr(0, 2);
+  month = atoi(m.c_str());
+  if(month < 1) month = 1;
+  else if(month > 12) month = 12;
+  
+  std::string d = in.substr(3, 5);
+  day = atoi(d.c_str());
+  if(day < 1) day = 1;
+  else if(day > daysInMonth[month - 1]) day = daysInMonth[month - 1];
+  
+  std::string y = in.substr(6, 10);
+  year = atoi(y.c_str());
 }
 
 
@@ -118,7 +123,7 @@ bool Date::operator!=(const Date &rhs) const{
    std::string 
 */
 std::string Date::toStr() const{ // Using c++11 (c++0x)
-  return (std::to_string(month) + "/" + std::to_string(day) +
+  return (Date::intToStr_2d(month) + "/" + Date::intToStr_2d(day) +
           "/" + std::to_string(year));
 }
 
@@ -191,4 +196,27 @@ int Date::daysBetween(const Date &start, const Date &end){
   }
 
   return days;
+}
+
+/*bool incrMonth(const int mos){
+  int yr = year;
+  mos += month;
+  for(; mos > 12; mos -= 12){
+    ++yr;
+  }
+  if(day > daysInMonth[mos]){
+    if(!(mos == 2 && Date::isLeapYear(yr))){
+      return false;
+    }
+  }
+  month = mos;
+  year = yr;
+  return true;
+}
+*/
+
+inline std::string Date::intToStr_2d(const int n){ // Requires C++11
+  std::string str = std::to_string(n);
+  if(n < 10) str = "0" + str;
+  return str;
 }

@@ -3,9 +3,10 @@
 #include "Date.h"
 
 void testDate();
+void testDateStr();
 
 int main(){
-  testDate();
+  testDateStr();
 }
 
 void testDate(){
@@ -23,3 +24,10 @@ void testDate(){
   std::cout << d4 << "\t-\t" << d5 << "\t = " << Date::daysBetween(d4, d5) << std::endl;
 }
 
+void testDateStr(){
+  Date d1("01/15/2015");
+  Date d2("01/15/2015");
+  Date d3("01/15/2015");
+  Date d4("01/15/2015");
+  std::cout << d1.toStr() << "\n" << d2.toStr() << "\n" << d3.toStr() << "\n" << d4.toStr() << std::endl;
+}
