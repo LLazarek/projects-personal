@@ -1,0 +1,22 @@
+Datasheet: http://www.dipmicro.com/?datasheet=HMC5883L.pdf
+
+Pins:
+| DRDY     | SDA | SCL | GND | VCC  |
+|----------+-----+-----+-----+------|
+| Optional | SDA | SCL | GND | 3.3v |
+
+
+Single measurement mode - a single measurement is made and then the chip goes idle until the data regs are read
+Continuous measurement mode - measurements continuously made and the data regs continuously updated at a rate specified by the configuration
+
+Data output regs are split into two: MSB/LSB, and there are 3 of these pairs for X, Y, and Z
+When data is read from any one or more of these regs, no new data can be written until all six regs have been read
+
+Status reg, 8 bit read-only reg indicating status:
+LSB is RDY bit, set when data is written to all 6 data regs
+
+I2C 400kbps, 8-bit data/addr send, 1 bit acknowledge bit
+
+default address is 0x3C for write, 0x3D for read
+
+SDA and SCL lines require pull-up resistors (2.2K to 10k)
