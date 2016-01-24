@@ -1,9 +1,10 @@
 Datasheet: http://www.dipmicro.com/?datasheet=HMC5883L.pdf
 
 Pins:
-| DRDY     | SDA | SCL | GND | VCC  |
-|----------+-----+-----+-----+------|
-| Optional | SDA | SCL | GND | 3.3v |
+| HMC5883 :: | DRDY           | SDA      | SCL      | GND | VCC  |   |
+|------------+----------------+----------+----------+-----+------+---|
+| Arduino :: | Optional (N/A) | SDA (A4) | SCL (A5) | GND | 3.3v |   |
+
 
 
 Single measurement mode - a single measurement is made and then the chip goes idle until the data regs are read

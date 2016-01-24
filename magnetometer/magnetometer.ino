@@ -2,15 +2,23 @@
    Adapted by Lukas Lazarek from example code in Adafruit_HMC5883_U library written by Kevin Townsend.
 
    Libraries required: Adafruit_Sensor, Adafruit_HMC5883_U; obtained from
-   https://learn.adafruit.com/adafruit-hmc5883l-breakout-triple-axis-magnetometer-compass-sensor/wiring-and-test
-   along with wiring instructions.
- */
+       https://learn.adafruit.com/adafruit-hmc5883l-breakout-triple-axis-magnetometer-compass-sensor/wiring-and-test
+   along with wiring instructions:
+
+   HMC5883 datasheet: http://www.dipmicro.com/?datasheet=HMC5883L.pdf
+
+   Pins (HMC5883 pins ordered as they appear on chip, left to right, with the axis diagram facing up
+         and the HMC5883L label on the left side of the chip, so pins are on bottom side of the chip)
+   | HMC5883 :: | DRDY     | SDA      | SCL      | GND | VCC  |   |
+   |------------+----------+----------+----------+-----+------+---|
+   | Arduino :: | N/A      | SDA (A4) | SCL (A5) | GND | 3.3v |   |
+*/
 
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
 
-/* Assign a unique ID to this sensor at the same time */
+/* Create HMC object and assign a unique ID */
 Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
 void displaySensorDetails(void)
