@@ -13,9 +13,8 @@ void setup() {
 }
 
 void loop() {
-  Wire.beginTransmission(0x3C); // Write data to magnetometer
-  //Wire.write(0x3C);
-  Wire.write(0x03); // Set register pointer to X MSB
+  //Wire.beginTransmission(0x3C); // Write data to magnetometer
+  //Wire.write(0x03); // Set register pointer to X MSB
   Wire.requestFrom(0x3D, 6);    // request 6 bytes (X1, X2, Y1, Y2, Z1, Z2)
   while(!Wire.available()){
     Serial.println("Waiting...");
