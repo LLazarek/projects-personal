@@ -3,11 +3,15 @@
 int main(){
   finManager fm;
   std::string str("");
+  std::cout << "Welcome to finAid. Today's date is " << Date::today().toStr()
+	    << '\n' << std::endl;
   do{
     std::cout << "Enter a new data entry:" << std::endl;
-    std::cout << "Date:\t\t\t";
+    std::cout << "Date: (. = today)\t";
     getline(std::cin, str);
-    Date d(str);
+    Date d;
+    if(str.compare(".") == 0)  d = Date::today();
+    else                       d = Date(str);
     
     std::cout << "Amount: (- = earning)\t";
     getline(std::cin, str);

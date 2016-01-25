@@ -96,7 +96,7 @@ bool finManager::saveEntry(const fin_data &entry){
   std::ofstream file(path, std::ios::trunc);
   if(file.is_open()){
     for(auto it = entryList.begin(); it != entryList.end(); ++it){
-      file << it -> toString() << "\n";
+      file << it -> toStr() << "\n";
     }
     file.close();
     return true;

@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <string>
+#include <ctime>
 #include "Date.h"
 
 #define DEBUG
@@ -128,7 +129,7 @@ std::string Date::toStr() const{ // Using c++11 (c++0x)
 }
 
 std::ostream& operator<<(std::ostream &out, const Date &rhs){
-  return out << rhs.month << "/" << rhs.day << "/" << rhs.year;
+  return out << rhs.toStr();
 }
 
 /* Date::daysBetween():
@@ -219,4 +220,20 @@ inline std::string Date::intToStr_2d(const int n){ // Requires C++11
   std::string str = std::to_string(n);
   if(n < 10) str = "0" + str;
   return str;
+}
+
+
+/* Date::today():
+   Returns today's date.
+
+   @params
+   void
+
+   @return
+   Date 
+*/
+Date Date::today(){
+  std::time_t t = time(0);
+  struct tm *now = std::localtime(&t);
+  return Date(now -> tm_mon + 1, now -> tm_mday, now -> tm_year + 1900);
 }

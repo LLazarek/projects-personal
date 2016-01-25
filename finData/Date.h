@@ -36,6 +36,7 @@ class Date{
   void  incrYear(const int yrs);
 
   static std::string intToStr_2d(const int n);
+  static Date today();
   
 private:
   int month;

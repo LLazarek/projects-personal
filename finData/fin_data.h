@@ -30,7 +30,7 @@ public:
   std::unordered_set<std::string>  getTagList () const      { return tagList; }
   std::string                      getNote    () const      { return note;    }
 
-  std::string                      toString   () const;
+  std::string                      toStr      () const;
   
 private:
   Date                             date;

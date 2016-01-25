@@ -49,7 +49,7 @@ void fin_data::addTags(std::string tags){
   }
 }
 
-std::string fin_data::toString() const {
+std::string fin_data::toStr() const {
   std::string str = "";
   str += date.toStr() + "|" + std::to_string(amount) + "|" + medium + "|"
          + note + "|";
