@@ -27,6 +27,19 @@ Within these files, data is organized in ascending chronological order, with eac
 *** DONE Test Date
 *** DONE Finish and test fin_data
 *** TODO Finish implementation of finManager
+**** DONE Implement save/load data functions
+**** TODO Implement search functions
+****** Search by specific date
+****** Search for entries within date range
+****** As a subset of within range:
+******* Search by amount
+******* Search by medium
+******* Search by tag
+******* Search by keyword: word in note or tag
+****** Allow searching for multiple criteria by performing one search, then performing the next search on the results of the first, and so on
+**** TODO Implement report generation functions
+****** Reports by each of the criteria
+**** TODO Implement relative dates in entry logger (e.g: .-1d = yesterday, .-2w = two weeks ago)
 *** TODO Test finManager
 
 

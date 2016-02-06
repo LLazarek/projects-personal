@@ -128,6 +128,7 @@ std::string Date::toStr() const{ // Using c++11 (c++0x)
           "/" + std::to_string(year));
 }
 
+// Stream insertion operator for easy printing of Dates
 std::ostream& operator<<(std::ostream &out, const Date &rhs){
   return out << rhs.toStr();
 }
@@ -216,6 +217,85 @@ int Date::daysBetween(const Date &start, const Date &end){
 }
 */
 
+/* Date::incrDay():
+   Changes this date by the given number of days. Given a positive number,
+   this date moves into the future; given a negative, into the past.
+
+   @params
+   const int days          The number of days to move this date
+
+   @return
+   void 
+*/
+void Date::incrDay(const int days){
+  if(days < 0){
+    /* Moving into past */
+    for(int i = days; i > 0; ++i){
+
+      if(month == 3 && isLeapYear(year)){
+	// Specially handle leap month
+	if(day == 1){
+	  day = 29;
+	  --month;
+	}
+	else --day;
+      }
+      else{
+	if(day == 1){
+	  if(month == 1){
+	    // Wrap year
+	    day = 31;
+	    month = 12;
+	    --year;
+	  }
+	  else{
+	    day = daysInMonth[--month - 1];
+	  }
+	}
+	else --day;
+      }
+      
+    }
+  }
+  else{
+    /* Moving into future */
+    for(int i = days; i > 0; ++i){
+
+      if(month == 2 && isLeapYear(year)){
+	// Specially handle leap month
+	if(day == 29){
+	  day = 1;
+	  ++month;
+	}
+	else ++day;
+      }
+      else{
+	if(day == daysInMonth[month - 1]){
+	  day = 1;
+	  if(month == 12){
+	    // Wrap year
+	    month = 1;
+	    ++year;
+	  }
+	  else ++month;
+	}
+	else ++day;
+      }
+
+    }
+  }
+}
+
+/* std::string Date::intToStr_2d():
+   Converts the given integer into a string representation that is guaranteed
+   to have at least two digits.
+
+   @params
+   const int n
+
+   @return
+   inline 
+*/
 inline std::string Date::intToStr_2d(const int n){ // Requires C++11
   std::string str = std::to_string(n);
   if(n < 10) str = "0" + str;

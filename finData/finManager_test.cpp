@@ -5,6 +5,10 @@ int main(){
   std::string str("");
   std::cout << "Welcome to finAid. Today's date is " << Date::today().toStr()
 	    << '\n' << std::endl;
+  Date test = Date::today();
+  test.incrDay(1);
+  std::cout << test << '\n' << std::endl;
+  
   do{
     std::cout << "Enter a new data entry:" << std::endl;
     std::cout << "Date: (. = today)\t";
