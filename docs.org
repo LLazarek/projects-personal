@@ -1,25 +1,38 @@
 Building a cheap, customizable, extensible force meter/scale
 
-* The Setup
+
+* Construction
+** The Setup
 We have a wooden platform with two blocks vertically mounted about 1 foot apart.
 See pictures of setup:
 [[file:./Platform_full][Platform]]
 [[file:./Load_cell.png][Load cell]]
 
-* Wiring
-The load cells need to have their output signal amplified, so we use two INA125P amplifiers to bring their signals up to a level that Arduino can work with.
+** Wiring
+The load cells need to have their output signal amplified, so we used two INA125P amplifiers to bring their signals up to a level that Arduino can work with.
 See wiring:
 [[file:./Wiring_diagram][Wiring diagram]]
 [[file:./Wiring_single][Picture of wiring set up]]
 [[file:./Wiring_real][Full picture of wiring]]
 
-* Arduino code set up
+** Arduino code set up
 Print the mean of the two readings out to Serial, one reading per line. Delay for as long (or not) as necessary - we used 10ms.
 
-* Calibration
+** Calibration
 Next, we needed to determine the relationship between the output of the load cells.
 We could have done some math to find these relationships, but the simpler and generally more practical route is to just empirically determine the relationship.
 To do this, we gathered a few household items of various weights and an electronic scale. We weighed each item and recorded its weight on a piece of paper. Then we measured the output of the force sensor for each of those items, and then plotted the measured weights vs the load cell readings. Using Excel or some equivalent, you can create a linear fit and thereby obtain a function for the weight (or force) in terms of the load cell output.
 
-* Results
+** Results
 The meter is now complete. The thing to be aware of, however, is that the calibration needs to be redone if the conditions in which the calibration are done are different from those in which the measurement will be done. For example, we calibrated the meter inside, at room temperature (~20 degrees C). However, we needed to use it outside, and we found that when we took it outside the readings of the load cells began drifting considerably from the calibration point we had determined before. This was because it was cold outside (~5 degrees C) and the temperature was changing the tensile properties of the metal that the load cells are made of. Thus, we needed to recalibrate before we could use the meter.
+
+* Test 1
+We decided to test our scale with model rocket engines - like the kind you can buy from Estes and other suppliers. We wanted to see what the output of these engines over time would look like.
+Our testing went without a hitch, but we realised after launching that one of our load cells was faulty, causing our system to "max out" at 30N, well below its advertised limit of measurement.
+
+* Test 2
+For the second test, we used only a single load cell (the non-faulty one; we had the other load cell there but it only acted as a support, not a measurement tool). Otherwise the setup was identical to the previous test. This time we took special care to check the upper limit of its capacity. We found that it had an upper limit of 114N - still not as high as the ideal, in fact just over half, but likely to be good enough for our purposes.
+
+So we tested again. Although our testing rig was compromised (it fell over) during the test, we still managed to get a peak reading of 93N! See Data_Analysis_2.ods for the full data.
+
+Now something may appear off about our data: when nothing is happening, the sensor reads 26 N. Clearly that's not right, given that our test mass is only 400g = ~4N. This is due to the force sensors having a minimum voltage output that, after calibration, corresponded to 26N. Everything weighing less than 26N shows up as 26N on the meter. So that means that the baseline value is always 26N so long as the meter is measuring a force below 26N; beyond 26N the scale measures quite accurately. 

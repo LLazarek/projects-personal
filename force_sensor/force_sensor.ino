@@ -1,5 +1,5 @@
-#define coeff -0.0763401763
-#define intercept 32.6997641672
+#define coeff 0.1032861167
+#define intercept 25.0678377612
 
 void setup() {
   Serial.begin(115200);
@@ -7,7 +7,8 @@ void setup() {
 }
 
 void loop() {
-  double val = (analogRead(A0) + analogRead(A1))/2;
+  double val = analogRead(A1);
+  //double val = (analogRead(A0) + analogRead(A1))/2;
   Serial.println(coeff*val + intercept);
   delay(10);
 }
