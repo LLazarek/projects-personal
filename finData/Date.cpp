@@ -230,7 +230,7 @@ int Date::daysBetween(const Date &start, const Date &end){
 void Date::incrDay(const int days){
   if(days < 0){
     /* Moving into past */
-    for(int i = days; i > 0; ++i){
+    for(int i = days; i > 0; --i){
 
       if(month == 3 && isLeapYear(year)){
 	// Specially handle leap month
@@ -239,7 +239,7 @@ void Date::incrDay(const int days){
 	  --month;
 	}
 	else --day;
-      }
+      } // end if(month == 2 && ...
       else{
 	if(day == 1){
 	  if(month == 1){
@@ -255,11 +255,11 @@ void Date::incrDay(const int days){
 	else --day;
       }
       
-    }
-  }
+    } // end for
+  } // end if(days < 0)
   else{
     /* Moving into future */
-    for(int i = days; i > 0; ++i){
+    for(int i = days; i > 0; --i){
 
       if(month == 2 && isLeapYear(year)){
 	// Specially handle leap month
@@ -268,7 +268,7 @@ void Date::incrDay(const int days){
 	  ++month;
 	}
 	else ++day;
-      }
+      } // end if(month == 2 && ...
       else{
 	if(day == daysInMonth[month - 1]){
 	  day = 1;
@@ -282,8 +282,8 @@ void Date::incrDay(const int days){
 	else ++day;
       }
 
-    }
-  }
+    } // end for
+  } // end else
 }
 
 /* std::string Date::intToStr_2d():
